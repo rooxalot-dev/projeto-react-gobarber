@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+  align-items: center;
   height: 56px;
   width: 90%;
   border-radius: 10px;
@@ -15,5 +17,10 @@ export const Container = styled.div`
     border: 0;
     background-color: transparent;
     color: #fafafc;
+  }
+
+  svg {
+    color: #989898;
+    margin-left: 10px;
   }
 `;
