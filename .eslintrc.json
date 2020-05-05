@@ -30,6 +30,8 @@
     ],
     "rules": {
       "spaced-comment": "off",
+      "react/prop-types": "off",
+      "react/jsx-props-no-spreading": "off",
       "react/jsx-one-expression-per-line": "off",
       "prettier/prettier": "error",
       "react-hooks/rules-of-hooks": "error",

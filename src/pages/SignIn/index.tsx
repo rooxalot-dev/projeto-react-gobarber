@@ -3,6 +3,8 @@ import { FiLogIn } from 'react-icons/fi';
 
 import logoImg from '../../assets/logo.svg';
 import { Container, LoginBackground, LoginContent } from './styles';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const SignIn: React.FC = () => {
   return (
@@ -13,7 +15,7 @@ const SignIn: React.FC = () => {
         <form>
           <h1>Faça seu logon</h1>
 
-          <div className="input">
+          {/* <div className="input">
             <input
               type="email"
               autoComplete="off"
@@ -23,9 +25,17 @@ const SignIn: React.FC = () => {
           </div>
           <div className="input">
             <input type="password" placeholder="Senha" name="password" />
-          </div>
+          </div> */}
+          <Input
+            type="email"
+            autoComplete="off"
+            placeholder="E-mail"
+            name="email"
+          />
 
-          <button type="submit">Entrar</button>
+          <Input type="password" placeholder="Senha" name="password" />
+
+          <Button type="submit">Entrar</Button>
 
           <a href="teste">Esqueci minha senha</a>
         </form>
