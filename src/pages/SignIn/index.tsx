@@ -1,8 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useContext } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+
+import { useAuth } from '../../hooks/AuthContext';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 import logoImg from '../../assets/logo.svg';
@@ -11,6 +13,9 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 const SignIn: React.FC = () => {
+  const { signIn, user } = useAuth();
+  const formRef = useRef<FormHandles>(null);
+
   const schema = Yup.object().shape({
     email: Yup.string()
       .required('E-mail é obrigatório')
@@ -18,15 +23,18 @@ const SignIn: React.FC = () => {
     password: Yup.string().required('Senha é obrigatória'),
   });
 
-  const formRef = useRef<FormHandles>(null);
-
   const handleSubmit = useCallback(
-    async (data: object) => {
+    async (formData: object) => {
       try {
         if (formRef.current) {
           formRef.current.setErrors({});
         }
-        await schema.validate(data, { abortEarly: false });
+
+        const validatedData = await schema.validate(formData, {
+          abortEarly: false,
+        });
+
+        await signIn(validatedData);
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
