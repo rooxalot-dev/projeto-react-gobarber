@@ -4,7 +4,8 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/Auth';
+import { useToast } from '../../hooks/Toast';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 import logoImg from '../../assets/logo.svg';
@@ -14,6 +15,7 @@ import Button from '../../components/Button';
 
 const SignIn: React.FC = () => {
   const { signIn, user } = useAuth();
+  const { addToast } = useToast();
   const formRef = useRef<FormHandles>(null);
 
   const schema = Yup.object().shape({
@@ -40,11 +42,18 @@ const SignIn: React.FC = () => {
           const errors = getValidationErrors(error);
           if (formRef.current) {
             formRef.current.setErrors(errors);
+            return;
           }
         }
+
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Não foi possível concluir seu logon. Tente novamente!',
+        });
       }
     },
-    [schema],
+    [schema, signIn, addToast],
   );
 
   return (

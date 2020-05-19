@@ -28,6 +28,7 @@
     "react-tooltip": "^4.2.6",
     "styled-components": "^5.1.0",
     "typescript": "~3.7.2",
+    "uuidv4": "^6.0.8",
     "yup": "^0.28.5"
   },
   "scripts": {
