@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
 interface ContainerProps {
   type: 'info' | 'success' | 'error';
@@ -21,7 +22,8 @@ const ToastTypeStyles = {
   `,
 };
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled(animated.div)<ContainerProps>`
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -30,12 +32,6 @@ export const Container = styled.div<ContainerProps>`
   margin-bottom: 15px;
   border-radius: 4px;
   ${(props) => ToastTypeStyles[props.type]}
-
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateX(-3px) translateY(-3px);
-  }
 
   > svg {
     margin-right: 15px;

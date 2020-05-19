@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   FiAlertCircle,
   FiInfo,
@@ -9,6 +9,7 @@ import {
 import { Container } from './styles';
 
 interface ToastProps {
+  style: object;
   type: 'info' | 'success' | 'error';
   title: string;
   description?: string;
@@ -21,9 +22,21 @@ const iconType = {
   error: <FiAlertCircle size={20} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ type, title, description, onClose }) => {
+const Toast: React.FC<ToastProps> = ({
+  type,
+  title,
+  description,
+  style,
+  onClose,
+}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      onClose();
+    }, 3500);
+  }, [onClose]);
+
   return (
-    <Container type={type}>
+    <Container style={style} type={type}>
       {iconType[type]}
       <div>
         <strong>{title}</strong>

@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { useTransition } from 'react-spring';
 
 import { Container } from './styles';
 
@@ -12,13 +13,18 @@ interface ToastContainerProps {
 
 const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
   const { removeToast } = useToast();
-  const handleCloseToast = useCallback((id: string) => {}, []);
+  const animatedMessages = useTransition(messages, (message) => message.id, {
+    from: { right: '-120%' },
+    enter: { right: '0%' },
+    leave: { right: '-120%' },
+  });
 
   return (
     <Container>
-      {messages.map((message) => (
+      {animatedMessages.map(({ item: message, key, props }) => (
         <Toast
-          key={message.id}
+          key={key}
+          style={props}
           type={message.type || 'info'}
           title={message.title}
           description={message.description}
