@@ -28,7 +28,9 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
           type={message.type || 'info'}
           title={message.title}
           description={message.description}
-          onClose={() => removeToast(message.id)}
+          onClose={() => {
+            removeToast(message.id);
+          }}
         />
       ))}
     </Container>

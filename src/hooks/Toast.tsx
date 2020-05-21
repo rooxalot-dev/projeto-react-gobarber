@@ -37,6 +37,7 @@ const ToastProvider: React.FC = ({ children }) => {
   const removeToast = useCallback(
     (id) => {
       const filteredMessages = messages.filter((message) => message.id !== id);
+      console.log('remaining toasts: ', filteredMessages);
       setMessages([...filteredMessages]);
     },
     [messages],

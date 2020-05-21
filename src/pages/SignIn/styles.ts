@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signInBackground from '../../assets/sign-in-background.png';
@@ -20,6 +20,25 @@ export const LoginContent = styled.div`
     max-width: 100%;
     background: rgba(0, 0, 0, 0.6);
   }
+`;
+
+const fadeInFromLeft = keyframes`
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
+export const AnimatedContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: ${fadeInFromLeft} 1s;
 
   form {
     margin: 80px 0;

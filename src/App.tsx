@@ -1,15 +1,16 @@
 import React from 'react';
 
+import { BrowserRouter } from 'react-router-dom';
 import AppProvider from './hooks';
-import { ToastProvider } from './hooks/Toast';
 
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return (
     <AppProvider>
-      <SignIn />
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </AppProvider>
   );
 };

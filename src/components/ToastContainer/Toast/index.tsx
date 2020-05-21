@@ -30,9 +30,13 @@ const Toast: React.FC<ToastProps> = ({
   onClose,
 }) => {
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       onClose();
-    }, 3500);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [onClose]);
 
   return (
