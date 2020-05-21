@@ -81,10 +81,21 @@ export const AnimatedContent = styled.div`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 export const LoginBackground = styled.div`
   flex: 1;
   background: url(${signInBackground}) no-repeat center;
   background-size: cover;
+
+  animation: ${fadeIn} 1s;
 
   @media (max-width: 1024px) {
     max-width: 100%;
